@@ -1,0 +1,18 @@
+<div class="middle">
+    <div *ngIf="gameOverMessage">
+        <h1>{{gameOverMessage}}</h1>
+    </div>
+    <div *ngIf="!gameOverMessage && !gameEndingState">
+        <h2>{{playerName}}: {{playerCardsSum}}</h2>
+        <button (click)="requestCard()" class="btn btn-danger">Get Card</button>
+        <button (click)="flipCards()" class="btn btn-danger">Flip</button>
+    </div>
+    <div *ngIf="gameEndingState">
+        <h1>{{gameEndingState}}</h1>
+        <h2>Dealer's cards: {{botCardsSum}}, Total rounds: {{turns}}, My cards: {{playerCardsSum}}</h2>
+    </div>
+    <div *ngIf="gameOverMessage || gameEndingState">
+        <button (click)="newGame()" class="btn btn-danger">New Game</button>
+        <button (click)="mainMenu()" class="btn btn-danger">Main Menu</button>
+    </div>
+</div>
