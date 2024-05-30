@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreatedGameServiceService } from '../services/created-game-service.service';
 
+
 @Component({
   selector: 'app-start-game',
   standalone: true,
@@ -18,7 +19,6 @@ export class StartGameComponent {
   playerName: string = "";
 
   startGame(): void {
-
     const requestBodyPlayerName = {
       name: this.playerName
     };
@@ -31,7 +31,7 @@ export class StartGameComponent {
       body: JSON.stringify(requestBodyPlayerName),
     };
 
-    fetch("http://localhost:3000/api/games/new-game", requestOptions)
+    fetch(import.meta.env['NG_APP_API_URL']+"/api/games/new-game", requestOptions)
       .then((response) => response.json())
       .then((response) => {
         this.createdGameService.setPlayer(this.playerName);
