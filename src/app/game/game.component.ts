@@ -27,7 +27,7 @@ export class GameComponent implements OnInit {
   }
 
   requestCard(): void {
-    fetch(`http://localhost:3000/api/games/card-request/${this.createdGameService.getGameId()}`)
+    fetch(`${import.meta.env['NG_APP_API_URL']}/api/games/card-request/${this.createdGameService.getGameId()}`)
     .then((response) => response.json())
     .then((response) => {
       this.isGameActive(response);
@@ -36,7 +36,7 @@ export class GameComponent implements OnInit {
   }
   
   flipCards(): void {
-    fetch(`http://localhost:3000/api/games/card-flip/${this.createdGameService.getGameId()}`)
+    fetch(`${import.meta.env['NG_APP_API_URL']}/api/games/card-flip/${this.createdGameService.getGameId()}`)
     .then((response) => response.json())
     .then((response) => {
       this.botCardsSum = response.enemyCardsSum;
@@ -76,7 +76,7 @@ export class GameComponent implements OnInit {
       body: JSON.stringify(requestBodyPlayerName),
     };
 
-    fetch("http://localhost:3000/api/games/new-game", requestOptions)
+    fetch(import.meta.env['NG_APP_API_URL']+"/api/games/new-game", requestOptions)
       .then((response) => response.json())
       .then((response) => {
         this.createdGameService.setGameId(response.gameId);
